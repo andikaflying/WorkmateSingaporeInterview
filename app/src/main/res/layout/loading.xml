@@ -10,17 +10,19 @@
     <ProgressBar
         android:id="@+id/progress_horizontal"
         style="?android:attr/progressBarStyleHorizontal"
-        android:minHeight="20dp"
-        android:maxHeight="20dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:minHeight="20dp"
+        android:maxHeight="20dp"
         android:layout_marginStart="60dp"
         android:layout_marginEnd="60dp"
-        android:padding="16dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        android:progressDrawable="@drawable/custom_progress_bar"
+        android:background="#FFFFFF"
+        />
 
     <TextView
         android:id="@+id/txvClock"

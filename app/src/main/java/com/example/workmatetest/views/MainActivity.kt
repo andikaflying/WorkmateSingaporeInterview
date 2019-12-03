@@ -47,9 +47,9 @@ class MainActivity : AppCompatActivity() {
 
         clockViewModel.getStaffDetail().observe(this@MainActivity, Observer {
             if (it != null) {
-                binding.txvJob.setText(it.position.name);
-                binding.txvCompany.setText(it.client.name);
-                binding.txvPrice.text = it.wage_amount;
+                binding.txvJob.text = it.position.name;
+                binding.txvCompany.text = it.client.name;
+                binding.txvPrice.text = "Rp. " + it.wage_amount;
                 binding.txvPerDay.text = it.wage_type;
                 binding.txvAddress.text = it.location.address.street_1;
                 binding.txvManagerName.text = it.manager.name;
