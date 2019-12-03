@@ -1,11 +1,10 @@
 package com.example.workmatetest.views
 
-import android.app.Activity
 import android.app.Dialog
+import android.graphics.Paint
 import android.os.Bundle
 import android.os.CountDownTimer
 import android.os.Handler
-import android.util.Log
 import android.view.View
 import android.view.Window
 import android.view.WindowManager
@@ -20,8 +19,8 @@ import com.example.workmatetest.R
 import com.example.workmatetest.databinding.MainBinding
 import com.example.workmatetest.utilities.InjectorUtils
 import com.example.workmatetest.viewmodels.ClockViewModel
-import java.text.SimpleDateFormat
 import java.util.*
+
 
 class MainActivity : AppCompatActivity() {
     val TAG: String = MainActivity::class.java.getName()
@@ -34,7 +33,7 @@ class MainActivity : AppCompatActivity() {
     var dialog: Dialog? = null
     var progressBar: ProgressBar? = null
     var btnCancel: Button? = null
-
+    var txvClockLabel: TextView? = null
     var isAlreadyClockIn = false;
     var isAlreadyWork = false;
 
@@ -54,6 +53,7 @@ class MainActivity : AppCompatActivity() {
                 binding.txvAddress.text = it.location.address.street_1;
                 binding.txvManagerName.text = it.manager.name;
                 binding.txvContact.text = it.manager.phone;
+                binding.txvContact.setPaintFlags(binding.txvContact.getPaintFlags() or Paint.UNDERLINE_TEXT_FLAG)
             }
         })
 
@@ -69,6 +69,7 @@ class MainActivity : AppCompatActivity() {
         dialog!!.setContentView(R.layout.loading)
         progressBar = dialog!!.findViewById<View>(R.id.progress_horizontal) as ProgressBar
         btnCancel = dialog!!.findViewById(R.id.btnCancel)
+        txvClockLabel = dialog!!.findViewById(R.id.txvClock)
 
         dialog!!.show()
         val window: Window? = dialog!!.window
@@ -79,6 +80,12 @@ class MainActivity : AppCompatActivity() {
 
         var status: Int;
         var limitTime: Long = 10000
+
+        if (isAlreadyClockIn == false) {
+            txvClockLabel!!.text = "Clock In"
+        } else {
+            txvClockLabel!!.text = "Clock Out"
+        }
 
         countDownTimer = object: CountDownTimer(limitTime, 1000) {
             override fun onFinish() {
@@ -118,9 +125,12 @@ class MainActivity : AppCompatActivity() {
     }
 
     fun setTime(textView: TextView) {
-        val formatter = SimpleDateFormat("HH:mm")
-        val date = Date(System.currentTimeMillis())
+        var time = ""
+        val cal = Calendar.getInstance()
+        cal.timeInMillis = System.currentTimeMillis()
+        time = cal[Calendar.HOUR].toString() + ":" + cal[Calendar.MINUTE]
+        time = if (cal[Calendar.AM_PM] === 0) "$time" + "am" else "$time" + "pm"
 
-        textView.setText(formatter.format(date))
+        textView.setText(time)
     }
 }
