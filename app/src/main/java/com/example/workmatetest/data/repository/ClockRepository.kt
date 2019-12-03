@@ -18,37 +18,37 @@ import retrofit2.Response
 class ClockRepository(var context: Context) {
     val TAG: String = ClockRepository::class.java.name
 
-    var apiList: APIList = RetrofitManager.service
-
-    init {
-        apiList = RetrofitManager.service
-    }
+//    var apiList: APIList;
+//
+//    init {
+//        apiList = null
+//    }
 
     fun auth(): LiveData<AuthResponse> {
         val liveDataResponse: MutableLiveData<AuthResponse> = MutableLiveData()
         var request: AuthRequest = AuthRequest();
 
-        apiList.auth(request).enqueue(object : Callback<AuthResponse> {
-            override fun onResponse(call: Call<AuthResponse>, response: Response<AuthResponse>) {
-                if (response.isSuccessful) {
-                    liveDataResponse.value = response.body()
-                    RetrofitManager.setHeaders(liveDataResponse.value?.key!!)
-                }
-            }
-
-            override fun onFailure(call: Call<AuthResponse>, t: Throwable) {
-                Log.e(TAG, t.message)
-            }
-        })
+//        apiList.auth(request).enqueue(object : Callback<AuthResponse> {
+//            override fun onResponse(call: Call<AuthResponse>, response: Response<AuthResponse>) {
+//                if (response.isSuccessful) {
+//                    liveDataResponse.value = response.body()
+//                    RetrofitManager.setHeaders(liveDataResponse.value?.key!!)
+//                }
+//            }
+//
+//            override fun onFailure(call: Call<AuthResponse>, t: Throwable) {
+//                Log.e(TAG, t.message)
+//            }
+//        })
 
         return liveDataResponse
     }
 
     fun clockIn(): LiveData<ClockResponse> {
+
         val liveDataResponse: MutableLiveData<ClockResponse> = MutableLiveData()
         var request: CoordinateRequest = CoordinateRequest();
-
-        apiList.clockIn(request).enqueue(object : Callback<ClockResponse> {
+        RetrofitManager.mRetrofit.create(APIList::class.java).clockIn(request).enqueue(object : Callback<ClockResponse> {
             override fun onResponse(call: Call<ClockResponse>, response: Response<ClockResponse>) {
                 if (response.isSuccessful) {
                     liveDataResponse.value = response.body()
@@ -67,17 +67,17 @@ class ClockRepository(var context: Context) {
         val liveDataResponse: MutableLiveData<ClockResponse> = MutableLiveData()
         var request: CoordinateRequest = CoordinateRequest();
 
-        apiList.clockOut(request).enqueue(object : Callback<ClockResponse> {
-            override fun onResponse(call: Call<ClockResponse>, response: Response<ClockResponse>) {
-                if (response.isSuccessful) {
-                    liveDataResponse.value = response.body()
-                }
-            }
-
-            override fun onFailure(call: Call<ClockResponse>, t: Throwable) {
-                Log.e(TAG, t.message)
-            }
-        })
+//        apiList.clockOut(request).enqueue(object : Callback<ClockResponse> {
+//            override fun onResponse(call: Call<ClockResponse>, response: Response<ClockResponse>) {
+//                if (response.isSuccessful) {
+//                    liveDataResponse.value = response.body()
+//                }
+//            }
+//
+//            override fun onFailure(call: Call<ClockResponse>, t: Throwable) {
+//                Log.e(TAG, t.message)
+//            }
+//        })
 
         return liveDataResponse
     }

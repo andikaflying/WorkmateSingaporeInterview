@@ -12,14 +12,14 @@ import retrofit2.http.Url
 interface APIList {
 
     //https://api.helpster.tech/v1/auth/login/
-    @POST("/auth/login/")
+    @POST("/v1/auth/login/")
     public fun auth(@Body authRequest: AuthRequest): Call<AuthResponse>
 
 //    https://api.helpster.tech/v1/staff-requests/26074/clock-in/
-    @POST("/staff-requests/26074/clock-in/")
+    @POST("/v1/staff-requests/26074/clock-in/")
     public fun clockIn(@Body coordinateRequest: CoordinateRequest): Call<ClockResponse>
 
 //    https://api.helpster.tech/v1/staff-requests/26074/clock-out/
-    @POST("/staff-requests/26074/clock-out/")
+    @POST("/v1/staff-requests/26074/clock-out/")
     public fun clockOut(@Body coordinateRequest: CoordinateRequest): Call<ClockResponse>
 }

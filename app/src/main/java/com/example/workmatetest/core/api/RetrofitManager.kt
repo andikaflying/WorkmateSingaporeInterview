@@ -1,5 +1,6 @@
 package com.example.workmatetest.core.api
 
+import android.util.Log
 import com.example.workmatetest.utilities.BASE_URL
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
@@ -11,13 +12,13 @@ import java.util.concurrent.TimeUnit
 object RetrofitManager {
     val TAG: String = RetrofitManager::class.java.getName()
 
-    lateinit private var mRetrofit: Retrofit
+    public lateinit var mRetrofit: Retrofit
     private val httpLoggingInterceptor: HttpLoggingInterceptor
-    private var okHttpClient: OkHttpClient
+    public lateinit var okHttpClient: OkHttpClient
     var customHttpInterceptors: CustomHttpInterceptors? = null
 
     //To provide Retrofit service
-    val service: APIList get() = mRetrofit.create(APIList::class.java)
+//    var service: APIList = mRetrofit.create(APIList::class.java)
 
     //Initialize needed properties like headers, base url, etc...
     init {
@@ -25,24 +26,27 @@ object RetrofitManager {
             .setLevel(HttpLoggingInterceptor.Level.BODY)
 
         //Build ok http client
-        okHttpClient = initOkHttp(CustomHttpInterceptors())
+//        okHttpClient = initOkHttp(CustomHttpInterceptors())
+        setHeaders("e945ae028e2355e123cfdf1b4fbb81ad4e5b2ebc");
 
-        mRetrofit = Retrofit.Builder()
-            .client(okHttpClient)
-            .addCallAdapterFactory(RxJavaCallAdapterFactory.create())
-            .addConverterFactory(GsonConverterFactory.create())
-            .baseUrl(BASE_URL)
-            .build()
+//        mRetrofit = Retrofit.Builder()
+//            .client(okHttpClient)
+//            .addCallAdapterFactory(RxJavaCallAdapterFactory.create())
+//            .addConverterFactory(GsonConverterFactory.create())
+//            .baseUrl(BASE_URL)
+//            .build()
 
         initRetrofit()
+        Log.e(TAG, "Init");
     }
 
     public fun setHeaders(token: String) {
-        val customHttpInterceptors = CustomHttpInterceptors.Builder()
+        var customHttpInterceptors = CustomHttpInterceptors.Builder()
             .addHeaderParams("Authorization", "Token " + token)
             .addHeaderParams("Content-Type", "application/json")
             .build()
         okHttpClient = initOkHttp(customHttpInterceptors)
+        Log.e(TAG, "Header size = " + okHttpClient.interceptors().size);
         initRetrofit()
     }
 
@@ -54,10 +58,12 @@ object RetrofitManager {
         }
 
         okHttpClient = initOkHttp(customHttpBuilder.build())
+
         initRetrofit()
     }
 
     public fun initRetrofit() {
+
         mRetrofit = Retrofit.Builder()
             .client(okHttpClient)
             .addCallAdapterFactory(RxJavaCallAdapterFactory.create())
