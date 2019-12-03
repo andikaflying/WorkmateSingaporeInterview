@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">WorkmateTest</string>
+    <string name="cancel"> <u>Cancel</u> </string>
 </resources>

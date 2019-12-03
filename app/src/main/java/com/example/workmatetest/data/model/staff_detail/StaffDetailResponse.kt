@@ -1,0 +1,33 @@
+package com.example.workmatetest.data.model.staff_detail
+
+data class StaffDetailResponse(
+    val client: Client,
+    val cover_image: String,
+    val created_date: String,
+    val description: String,
+    val end_time: String,
+    val fixed_location: Boolean,
+    val gender: Any,
+    val id: Int,
+    val interview_info: Any,
+    val interview_time: Any,
+    val location: Location,
+    val manager: Manager,
+    val max_age: Int,
+    val min_age: Int,
+    val modified_date: String,
+    val offer_counts: OfferCounts,
+    val offer_statistics: OfferStatistics,
+    val position: Position,
+    val require_english: Boolean,
+    val require_experience: Boolean,
+    val schedules: List<Schedule>,
+    val staff_required: Int,
+    val start_time: String,
+    val status: String,
+    val timezone: String,
+    val title: String,
+    val uid: String,
+    val wage_amount: String,
+    val wage_type: String
+)

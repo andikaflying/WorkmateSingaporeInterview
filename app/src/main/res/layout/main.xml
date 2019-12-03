@@ -1,206 +1,209 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    xmlns:tools="http://schemas.android.com/tools">
 
-    <TextView
-        android:id="@+id/txvJob"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="28dp"
-        android:layout_marginTop="88dp"
-        android:fontFamily="roboto"
-        android:text="Barista"
-        android:textColor="#777777"
-        android:textSize="22sp"
-        android:textStyle="bold"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
 
-    <TextView
-        android:id="@+id/txvCompany"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="118dp"
-        android:text="Kaizen Coffee"
-        android:textColor="#777777"
-        android:textSize="15sp"
-        android:textStyle="bold"
-        app:layout_constraintStart_toStartOf="@+id/txvJob"
-        app:layout_constraintTop_toTopOf="parent" />
+        <TextView
+            android:id="@+id/txvJob"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="28dp"
+            android:layout_marginTop="88dp"
+            android:fontFamily="roboto"
+            android:text="Barista"
+            android:textColor="#777777"
+            android:textSize="22sp"
+            android:textStyle="bold"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
-    <TextView
-        android:id="@+id/txvPrice"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="94dp"
-        android:layout_marginEnd="27dp"
-        android:text="Rp. 120.000"
-        android:textColor="#777777"
-        android:textSize="15sp"
-        android:textStyle="bold"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        <TextView
+            android:id="@+id/txvCompany"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="118dp"
+            android:text="Kaizen Coffee"
+            android:textColor="#777777"
+            android:textSize="15sp"
+            android:textStyle="bold"
+            app:layout_constraintStart_toStartOf="@+id/txvJob"
+            app:layout_constraintTop_toTopOf="parent" />
 
-    <TextView
-        android:id="@+id/txvPerDay"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="113dp"
-        android:text="per day"
-        android:textColor="@color/grey"
-        android:textSize="12sp"
-        android:textStyle="bold"
-        app:layout_constraintEnd_toEndOf="@+id/txvPrice"
-        app:layout_constraintTop_toTopOf="parent" />
+        <TextView
+            android:id="@+id/txvPrice"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="94dp"
+            android:layout_marginEnd="27dp"
+            android:text="Rp. 120.000"
+            android:textColor="#777777"
+            android:textSize="15sp"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
-    <ImageView
-        android:id="@+id/imvMap"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="12dp"
-        app:layout_constraintStart_toStartOf="@+id/txvCompany"
-        app:layout_constraintTop_toBottomOf="@+id/txvCompany"
-        app:srcCompat="@drawable/ic_map" />
+        <TextView
+            android:id="@+id/txvPerDay"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="113dp"
+            android:text="per day"
+            android:textColor="@color/grey"
+            android:textSize="12sp"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toEndOf="@+id/txvPrice"
+            app:layout_constraintTop_toTopOf="parent" />
 
-    <TextView
-        android:id="@+id/txvAddress"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="6dp"
-        android:layout_marginEnd="27dp"
-        android:text="Jl. CCI 1 "
-        android:textColor="@color/grey"
-        android:textSize="13sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/imvMap"
-        app:layout_constraintTop_toBottomOf="@+id/txvCompany" />
+        <ImageView
+            android:id="@+id/imvMap"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="12dp"
+            app:layout_constraintStart_toStartOf="@+id/txvCompany"
+            app:layout_constraintTop_toBottomOf="@+id/txvCompany"
+            app:srcCompat="@drawable/ic_map" />
 
-    <ImageView
-        android:id="@+id/imvStatus"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
-        app:layout_constraintStart_toStartOf="@+id/imvMap"
-        app:layout_constraintTop_toBottomOf="@+id/txvAddress"
-        app:srcCompat="@drawable/ic_people" />
+        <TextView
+            android:id="@+id/txvAddress"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="6dp"
+            android:layout_marginEnd="27dp"
+            android:text="Jl. CCI 1 "
+            android:textColor="@color/grey"
+            android:textSize="13sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/imvMap"
+            app:layout_constraintTop_toBottomOf="@+id/txvCompany" />
 
-    <TextView
-        android:id="@+id/txvManager"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="12dp"
-        android:text="Location Manager"
-        android:textColor="@color/grey"
-        android:textSize="13sp"
-        app:layout_constraintStart_toStartOf="@+id/txvAddress"
-        app:layout_constraintTop_toBottomOf="@+id/txvAddress" />
+        <ImageView
+            android:id="@+id/imvStatus"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            app:layout_constraintStart_toStartOf="@+id/imvMap"
+            app:layout_constraintTop_toBottomOf="@+id/txvAddress"
+            app:srcCompat="@drawable/ic_people" />
 
-    <TextView
-        android:id="@+id/txvManagerName"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="12dp"
-        android:layout_marginEnd="94dp"
-        android:text="Yai Thoong-Non"
-        android:textColor="@color/grey"
-        android:textSize="13sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/txvAddress" />
+        <TextView
+            android:id="@+id/txvManager"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="12dp"
+            android:text="Location Manager"
+            android:textColor="@color/grey"
+            android:textSize="13sp"
+            app:layout_constraintStart_toStartOf="@+id/txvAddress"
+            app:layout_constraintTop_toBottomOf="@+id/txvAddress" />
 
-    <ImageView
-        android:id="@+id/imvContact"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="18dp"
-        app:layout_constraintStart_toStartOf="@+id/imvStatus"
-        app:layout_constraintTop_toBottomOf="@+id/imvStatus"
-        app:srcCompat="@drawable/ic_call" />
+        <TextView
+            android:id="@+id/txvManagerName"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="12dp"
+            android:layout_marginEnd="94dp"
+            android:text="Yai Thoong-Non"
+            android:textColor="@color/grey"
+            android:textSize="13sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/txvAddress" />
 
-    <TextView
-        android:id="@+id/txvContactLabel"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="6dp"
-        android:layout_marginTop="12dp"
-        android:text="Contact Number"
-        android:textColor="@color/grey"
-        android:textSize="13sp"
-        app:layout_constraintStart_toEndOf="@+id/imvContact"
-        app:layout_constraintTop_toBottomOf="@+id/txvManager" />
+        <ImageView
+            android:id="@+id/imvContact"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="18dp"
+            app:layout_constraintStart_toStartOf="@+id/imvStatus"
+            app:layout_constraintTop_toBottomOf="@+id/imvStatus"
+            app:srcCompat="@drawable/ic_call" />
 
-    <TextView
-        android:id="@+id/txvContact"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="12dp"
-        android:text="+6231321312"
-        android:textColor="@color/grey"
-        android:textSize="13sp"
-        app:layout_constraintStart_toStartOf="@+id/txvManagerName"
-        app:layout_constraintTop_toBottomOf="@+id/txvManagerName" />
+        <TextView
+            android:id="@+id/txvContactLabel"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="6dp"
+            android:layout_marginTop="12dp"
+            android:text="Contact Number"
+            android:textColor="@color/grey"
+            android:textSize="13sp"
+            app:layout_constraintStart_toEndOf="@+id/imvContact"
+            app:layout_constraintTop_toBottomOf="@+id/txvManager" />
 
-    <TextView
-        android:id="@+id/txvClockInLabel"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="24dp"
-        android:text="Clock In"
-        android:textSize="13sp"
-        app:layout_constraintStart_toStartOf="@+id/imvContact"
-        app:layout_constraintTop_toBottomOf="@+id/txvContactLabel" />
+        <TextView
+            android:id="@+id/txvContact"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="12dp"
+            android:text="+6231321312"
+            android:textColor="@color/grey"
+            android:textSize="13sp"
+            app:layout_constraintStart_toStartOf="@+id/txvManagerName"
+            app:layout_constraintTop_toBottomOf="@+id/txvManagerName" />
 
-    <TextView
-        android:id="@+id/txvClockOutLabel"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="24dp"
-        android:text="Clock Out"
-        android:textColor="@color/grey"
-        android:textSize="13sp"
-        app:layout_constraintStart_toStartOf="@+id/txvContact"
-        app:layout_constraintTop_toBottomOf="@+id/txvContact" />
+        <TextView
+            android:id="@+id/txvClockInLabel"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="24dp"
+            android:text="Clock In"
+            android:textSize="13sp"
+            app:layout_constraintStart_toStartOf="@+id/imvContact"
+            app:layout_constraintTop_toBottomOf="@+id/txvContactLabel" />
 
-    <TextView
-        android:id="@+id/txvClockIn"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="4dp"
-        android:text="-"
-        android:textColor="@color/grey"
-        android:textSize="25sp"
-        android:textStyle="bold"
-        app:layout_constraintStart_toStartOf="@+id/txvClockInLabel"
-        app:layout_constraintTop_toBottomOf="@+id/txvClockInLabel" />
+        <TextView
+            android:id="@+id/txvClockOutLabel"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="24dp"
+            android:text="Clock Out"
+            android:textColor="@color/grey"
+            android:textSize="13sp"
+            app:layout_constraintStart_toStartOf="@+id/txvContact"
+            app:layout_constraintTop_toBottomOf="@+id/txvContact" />
 
-    <TextView
-        android:id="@+id/txvClockOut"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="4dp"
-        android:text="-"
-        android:textColor="@color/grey"
-        android:textSize="25sp"
-        android:textStyle="bold"
-        app:layout_constraintStart_toStartOf="@+id/txvClockOutLabel"
-        app:layout_constraintTop_toBottomOf="@+id/txvClockOutLabel" />
+        <TextView
+            android:id="@+id/txvClockIn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="4dp"
+            android:text="-"
+            android:textColor="@color/grey"
+            android:textSize="25sp"
+            android:textStyle="bold"
+            app:layout_constraintStart_toStartOf="@+id/txvClockInLabel"
+            app:layout_constraintTop_toBottomOf="@+id/txvClockInLabel" />
 
-    <Button
-        android:id="@+id/btnClock"
-        style="?android:attr/borderlessButtonStyle"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="62dp"
-        android:background="@drawable/oval"
-        android:text="Clock In"
-        android:textColor="@color/grey"
-        android:textSize="15sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/txvClockIn"
-        android:textAllCaps="false"/>
-</androidx.constraintlayout.widget.ConstraintLayout>
+        <TextView
+            android:id="@+id/txvClockOut"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="4dp"
+            android:text="-"
+            android:textColor="@color/grey"
+            android:textSize="25sp"
+            android:textStyle="bold"
+            app:layout_constraintStart_toStartOf="@+id/txvClockOutLabel"
+            app:layout_constraintTop_toBottomOf="@+id/txvClockOutLabel" />
+
+        <Button
+            android:id="@+id/btnClock"
+            style="?android:attr/borderlessButtonStyle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="62dp"
+            android:background="@drawable/oval"
+            android:text="Clock In"
+            android:textColor="@color/grey"
+            android:textSize="15sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/txvClockIn"
+            android:textAllCaps="false"/>
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>
+

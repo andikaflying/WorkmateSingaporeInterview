@@ -13,71 +13,62 @@ import android.widget.Button
 import android.widget.ProgressBar
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
+import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
 import com.example.workmatetest.R
+import com.example.workmatetest.databinding.MainBinding
 import com.example.workmatetest.utilities.InjectorUtils
 import com.example.workmatetest.viewmodels.ClockViewModel
 import java.text.SimpleDateFormat
 import java.util.*
 
-
 class MainActivity : AppCompatActivity() {
     val TAG: String = MainActivity::class.java.getName()
     private lateinit var clockViewModel: ClockViewModel
     private lateinit var countDownTimer: CountDownTimer
-    private lateinit var button2: Button
-    private lateinit var txvClockIn: TextView
-    private lateinit var txvClockOut: TextView
-
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_main)
-
-        val factory = InjectorUtils.provideClockViewModelFactory(this)
-        clockViewModel = ViewModelProviders.of(this, factory).get(ClockViewModel::class.java)
-//        clockViewModel.auth().observe(this, Observer {
-//            if (it != null) {
-//                clockViewModel.clockIn().observe(this, Observer {
-//                    if (it != null) {
-//                        Log.e(TAG, "ID Response : " + it.id)
-//                    }
-//                })
-//            }
-//        })
-//        clockViewModel.clockIn().observe(this, Observer {
-//            if (it != null) {
-//                Log.e(TAG, "ID Response : " + it.id)
-//            }
-//        })
-//        showDialog(this, "Test dialog")
-        showDialog()
-        button2 = findViewById(R.id.button2)
-        txvClockIn = findViewById(R.id.txvClockIn)
-        txvClockOut = findViewById(R.id.txvClockOut)
-
-        button2.setOnClickListener {
-            showDialog()
-        }
-    }
+    private lateinit var binding: MainBinding
 
     var status = 0
     var handler: Handler = Handler()
     var dialog: Dialog? = null
-    var text: ProgressBar? = null
-    var text2: TextView? = null
-    var button: Button? = null
+    var progressBar: ProgressBar? = null
+    var btnCancel: Button? = null
 
     var isAlreadyClockIn = false;
+    var isAlreadyWork = false;
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        binding = DataBindingUtil.setContentView(this, R.layout.main)
+
+        val factory = InjectorUtils.provideClockViewModelFactory(this)
+        clockViewModel = ViewModelProviders.of(this, factory).get(ClockViewModel::class.java)
+
+        clockViewModel.getStaffDetail().observe(this@MainActivity, Observer {
+            if (it != null) {
+                binding.txvJob.setText(it.position.name);
+                binding.txvCompany.setText(it.client.name);
+                binding.txvPrice.text = it.wage_amount;
+                binding.txvPerDay.text = it.wage_type;
+                binding.txvAddress.text = it.location.address.street_1;
+                binding.txvManagerName.text = it.manager.name;
+                binding.txvContact.text = it.manager.phone;
+            }
+        })
+
+        binding.btnClock.setOnClickListener {
+            showDialog()
+        }
+    }
 
     fun showDialog() {
-        dialog = Dialog(this)
+        dialog = Dialog(this,android.R.style.Theme_Black_NoTitleBar_Fullscreen)
         dialog!!.requestWindowFeature(Window.FEATURE_NO_TITLE)
         dialog!!.setCancelable(false)
-        dialog!!.setContentView(R.layout.progress_bar)
-        text = dialog!!.findViewById<View>(R.id.progress_horizontal) as ProgressBar
-        text2 = dialog!!.findViewById(R.id.value123)
-        button = dialog!!.findViewById(R.id.button)
+        dialog!!.setContentView(R.layout.loading)
+        progressBar = dialog!!.findViewById<View>(R.id.progress_horizontal) as ProgressBar
+        btnCancel = dialog!!.findViewById(R.id.btnCancel)
 
         dialog!!.show()
         val window: Window? = dialog!!.window
@@ -94,19 +85,20 @@ class MainActivity : AppCompatActivity() {
                 if (isAlreadyClockIn == false) {
                     clockViewModel.clockIn().observe(this@MainActivity, Observer {
                         if (it != null) {
-                            Log.e(TAG, "ID Response : " + it.id)
-                            setTime(txvClockIn)
+                            setTime(binding.txvClockIn)
                             isAlreadyClockIn = true
                             dialog!!.dismiss()
+                            binding.btnClock.setText("Clock Out");
 
                         }
                     })
                 } else {
                     clockViewModel.clockOut().observe(this@MainActivity, Observer {
                         if (it != null) {
-                            Log.e(TAG, "ID Response : " + it.id)
-                            setTime(txvClockOut)
+                            setTime(binding.txvClockOut)
                             isAlreadyClockIn = false
+                            dialog!!.dismiss()
+                            binding.btnClock.visibility = View.GONE;
                         }
                     })
                 }
@@ -114,48 +106,15 @@ class MainActivity : AppCompatActivity() {
 
             override fun onTick(millisUntilFinished: Long) {
                 status = ((limitTime - millisUntilFinished) / 1000).toInt()
-                text!!.progress = status * 10
-                text2!!.text = status.toString()
+                progressBar!!.progress = status * 10
             }
         }
         countDownTimer.start()
 
-        button!!.setOnClickListener {
+        btnCancel!!.setOnClickListener {
             countDownTimer.cancel();
             dialog!!.dismiss();
         }
-    }
-
-    fun showDialog(activity: Activity?, msg: String?) {
-        dialog = Dialog(activity!!)
-        dialog!!.requestWindowFeature(Window.FEATURE_NO_TITLE)
-        dialog!!.setCancelable(false)
-        dialog!!.setContentView(R.layout.progress_bar)
-        text = dialog!!.findViewById<View>(R.id.progress_horizontal) as ProgressBar
-        text2 = dialog!!.findViewById(R.id.value123)
-        dialog!!.show()
-        val window: Window? = dialog!!.window
-        window?.setLayout(
-            WindowManager.LayoutParams.MATCH_PARENT,
-            WindowManager.LayoutParams.WRAP_CONTENT
-        )
-        Thread(Runnable {
-            while (status < 100) {
-                status += 1
-                try {
-                    Thread.sleep(200)
-                } catch (e: InterruptedException) {
-                    e.printStackTrace()
-                }
-                handler.post {
-                    text!!.progress = status
-                    text2!!.setText(status.toString())
-                    if (status == 100) {
-                        status = 0
-                    }
-                }
-            }
-        }).start()
     }
 
     fun setTime(textView: TextView) {
